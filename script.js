@@ -8,7 +8,6 @@ var SUBMIT = '/create-job';
 window.onload = () => {
 	getInitialData();
 	var db = document.querySelector('#db');
-	console.log('[ db ]', db);
 	db.onclick = getNetworks;
 	var button = document.querySelector('#send');
 	
@@ -22,9 +21,7 @@ function getInitialData() {
 		.then((data) => {
 			const databases = data.data;
 			select = document.querySelector('#db');
-			console.log('[ databases ]', databases);
 			for (var data in databases){
-				console.log('[ data ]', databases[data])
 				var opt = document.createElement('option');
 				opt.value = databases[data];
 				opt.innerHTML = databases[data];
@@ -37,9 +34,7 @@ function getInitialData() {
 		.then((data) => {
 			const aligners = data.data;
 			select = document.querySelector('#aligner');
-			console.log('[ aligners ]', aligners);
 			for (var data in aligners){
-				console.log('[ data ]', aligners[data])
 				var opt = document.createElement('option');
 				opt.value = aligners[data];
 				opt.innerHTML = aligners[data];
@@ -77,16 +72,13 @@ function getNetworks() {
 		opt.innerHTML = "Choose an option";
 		select2.appendChild(opt);
 
-		console.log('[ networks ]', networks);
 		for (var data in networks){
-			console.log('[ network ]', networks[data])
 			var opt = document.createElement('option');
 			opt.value = networks[data];
 			opt.innerHTML = networks[data];
 			select1.appendChild(opt);
 		};
 		for (var data in networks){
-			console.log('[ network ]', networks[data])
 			var opt = document.createElement('option');
 			opt.value = networks[data];
 			opt.innerHTML = networks[data];
@@ -117,5 +109,4 @@ function submitForm() {
 	)
 	.then((res) => res.json())
 	.catch(err => console.log('[ ERROR ]', err));
-	console.log(db, net1, net2, aligner, mail);
 }
