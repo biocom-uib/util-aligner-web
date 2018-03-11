@@ -99,12 +99,14 @@ function submitForm() {
 		aligner,
 		mail
 	}
-	var data = new FormData()
-	data.append( "json", JSON.stringify(payload));
 	fetch(`${BASE_URL}${SUBMIT}`,
 		{
 			method: "POST",
-			body: data
+			body: JSON.stringify(payload),
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
 		}
 	)
 	.then((res) => res.json())
