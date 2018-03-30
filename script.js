@@ -48,7 +48,7 @@ function getInitialData() {
 
 function getNetworks() {
 	var db = document.querySelector('#db');
-	db_name = db.selectedOptions[0].value
+	db_name = db.value
 	fetch(`${BASE_URL}${NETWORKS}/${db_name}`)
 	.then((res) => res.json())
 	.then((data) => {
@@ -87,10 +87,10 @@ function getNetworks() {
 	}).catch(err => console.log('[ ERROR ]', err));
 }
 function submitForm() {
-	var db = document.querySelector('#db').selectedOptions[0].value;
-	var net1 = document.querySelector('#net-1').selectedOptions[0].value;
-	var net2 = document.querySelector('#net-2').selectedOptions[0].value;
-	var aligner = document.querySelector('#aligner').selectedOptions[0].value;
+	var db = document.querySelector('#db').value;
+	var net1 = document.querySelector('#net-1').value;
+	var net2 = document.querySelector('#net-2').value;
+	var aligner = document.querySelector('#aligner').value;
 	var mail = document.querySelector('#mail').value;
 	const payload = {
 		db,
