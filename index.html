@@ -1,43 +1,97 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <head>
-	<title>Adria Alcala Mena</title>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="style.css" />
-</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>PINAWEB</title>
+  
+  
+  
+  
+	<!-- CSS  -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel = "stylesheet"
+         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      
+      <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+      </script> 
+
 <body>
-	<form id="form">
-		<div class="input-item">
-			<label for="db">Database</label>
-			<select id="db">
-				<option value="">Choose an option</option>
-			</select>
+	<div class="section no-pad-bot" id="index-banner">
+		<div class="container">
+		  <br><br>
+		  <h1 class="header center orange-text">PINAWEB</h1>
+		  <div class="row center">
+				<h5 class="header col s12 light">A tool to align Protein Protein Interaction Networks</h5>
+		  </div>
+		  <br><br>
 		</div>
-		<div class="input-item">
-			<label for="net-1">Input network</label>
-			<select id="net-1">
-				<option value="">Choose an option</option>
-			</select>
-		</div>
-		<div class="input-item">
-			<label for="net-2">Output Network</label>
-			<select id="net-2">
-				<option value="">Choose an option</option>
-			</select>
-		</div>
-		<div class="input-item">
-			<label for="aligner">Aligner</label>
-			<select id="aligner">
-				<option value="">Choose an option</option>
-			</select>
-		</div>
-		<div class="input-item">
-			<label for="mail">Email</label>
-			<input id="mail" type="text" value="" />
-		</div>
-		<div class="input-item">
-			<input id="send" type="button" value="SEND" />
-		</div>
-	</form>
+  </div>
+  <form id="form">
+   <div class="row center">
+    <div id='div-db' class="input-field col s6">
+      <label for="db">Database</label>
+      <select id="db">
+        <option value="" disabled selected>Choose an option</option>
+      </select>
+    </div>
+    <div class="input-field col s6">
+        <label for="aligner">Aligner</label>
+        <select id="aligner">
+          <option value="" disabled selected>Choose an option</option>
+        </select>
+      </div>
+  
+  </div>
+
+  <div class="row center">
+  
+    <div id="div-net-1" class="input-field col s6">
+      <label for="net-1">Input network</label>
+      <select id="net-1">
+        <option value="" disabled selected>Choose an option</option>
+      </select>
+    </div>
+    <div id="div-net-2" class="input-field col s6">
+      <label for="net-2">Output Network</label>
+      <select id="net-2">
+        <option value="" disabled selected>Choose an option</option>
+      </select>
+    </div>
+  </div>
+  <div id='file-selector'>
+      <div id='file-selector-1' class="file-field input-field col s6 hide">
+          <div class="btn grey lighten-4 black-text">
+            <span>Select File</span>
+            <input id="file-net-1" type="file" multiple>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+            <span> Input Network</span>
+          </div>
+        </div>
+        <div id='file-selector-2' class="file-field input-field col s6 hide">
+            <div class="btn grey lighten-4 black-text">
+              <span>Select File/s</span>
+              <input id="file-net-2" type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+              <span> Output Network</span>
+            </div>
+          </div>
+
+    </div>
+  
+  <div class="input-field col s12">
+      <label for="mail">Email</label>
+      <input id="mail" type="email" value="" />
+    </div>
+    <div class="row center">
+        <a id="send" class="btn-large waves-effect waves-light orange">Send</a>
+    </div>
 	<script src="script.js"></script>
 </body>
 

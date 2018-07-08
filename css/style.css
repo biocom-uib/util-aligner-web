@@ -1,0 +1,57 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+.input-field {
+  margin-top: 40px;
+}
+.input-field .email {
+  font-size:
+}
+textarea.materialize-textarea {
+  font-size: 26px;
+  margin: 0 0 20px 0;
+  padding-bottom: 3px;
+  padding-left: 13px;
+  padding-top: 40px;
+}
+input[type=email]:not(.browser-default) {
+  font-size: 26px;
+  margin-left: 10px;
+}
+
+.input-field > label {
+  font-size: 2rem;
+  padding-top: 2rem;
+}
+
+.input-field > label.active {
+  font-size: 2rem;
+  margin-top: 7rem;
+}
+
+.select-wrapper input.select-dropdown {
+  font-size: 22px;
+}
+
+.select-wrapper .caret {
+  font-size: 22px;
+}
+
+.file-field .file-path-wrapper {
+  font-size: 20px;
+}
+
+.file-field .btn, .file-field .btn-large, .file-field .btn-small {
+  padding-top: 4px;
+}
