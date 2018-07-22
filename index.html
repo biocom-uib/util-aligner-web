@@ -10,12 +10,14 @@
 	<!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel = "stylesheet"
-         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
       <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       
-      <script type = "text/javascript"
-         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+	  <!-- <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.4.min.js"></script>            -->
+	  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	  <!-- <script src="../jquery.materialize-autocomplete.js"></script> -->
+	  <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js">
+		<script src = "https://codepen.io/arg3ni5/pen/VPQZwe">
       </script> 
 
 <body>
@@ -49,17 +51,13 @@
   <div class="row center">
   
     <div id="div-net-1" class="input-field col s6">
-      <label for="net-1">Input network</label>
-      <select id="net-1">
-        <option value="" disabled selected>Choose an option</option>
-      </select>
+		<input type="text" id="autocomplete" class="autocomplete">
+		<label for="autocomplete">Input network</label>
     </div>
     <div id="div-net-2" class="input-field col s6">
-      <label for="net-2">Output Network</label>
-      <select id="net-2">
-        <option value="" disabled selected>Choose an option</option>
-      </select>
-    </div>
+		<input type="text" id="autocomplete-2" class="autocomplete">
+		<label for="autocomplete-2">Input network</label>
+      </div>
   </div>
   <div id='file-selector'>
       <div id='file-selector-1' class="file-field input-field col s6 hide">

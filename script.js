@@ -5,6 +5,8 @@ var ALIGNERS = '/aligner';
 var SUBMIT = '/create-job';
 var proteins_1 = [];
 var proteins_2 = [];
+var network_1 = null;
+var network_2 = null;
 
 window.onload = () => {
 	getInitialData();
@@ -14,27 +16,42 @@ window.onload = () => {
 		if (db.value != '') {
 			getNetworks()
 		}
-    })
+	})
+
 	$('#div-net-1').on('change', function(){
-		db = document.querySelector('#net-1');
-		if (db.value === 'net_1') document.querySelector('#file-selector-1').className = "file-field input-field col s6";
+		db = document.querySelector('#autocomplete');
+		if (db.value === "Personalized Network") document.querySelector('#file-selector-1').className = "file-field input-field col s6";
 		else document.querySelector('#file-selector-1').className = "file-field input-field col s6 hide";
 	})
+	$('#div-net-1').on('click', function(){
+		db = document.querySelector('#autocomplete');
+		if (db.value === "Personalized Network") document.querySelector('#file-selector-1').className = "file-field input-field col s6";
+		else document.querySelector('#file-selector-1').className = "file-field input-field col s6 hide";
+	})
+
 	$('#div-net-2').on('change', function(){
-		db = document.querySelector('#net-2');
-		if (db.value === 'net_2') document.querySelector('#file-selector-2').className = "file-field input-field col s6";
+		db = document.querySelector('#autocomplete-2');
+		if (db.value === "Personalized Network") document.querySelector('#file-selector-2').className = "file-field input-field col s6";
 		else document.querySelector('#file-selector-2').className = "file-field input-field col s6 hide";
 	})
+	$('#div-net-2').on('click', function(){
+		db = document.querySelector('#autocomplete-2');
+		if (db.value === "Personalized Network") document.querySelector('#file-selector-2').className = "file-field input-field col s6";
+		else document.querySelector('#file-selector-1').className = "file-field input-field col s6 hide";
+	})
+
 	$('#file-net-1').on('change', function(){
 		getCSVFile('#file-net-1')
 	})
 	$('#file-net-2').on('change', function(){
 		getCSVFile('#file-net-2')
 	})
-		
+	
 	button.onclick = submitForm;
 }
 
+
+  
 
 function getInitialData() {
 	fetch(`${BASE_URL}${DATABASE}`)
@@ -79,51 +96,32 @@ function getNetworks() {
 	.then((res) => res.json())
 	.then((data) => {
 		const networks = data.data;
-		select1 = document.querySelector('#net-1');
-		while (select1.firstChild) {
-			select1.removeChild(select1.firstChild);
-		}
-		var opt = document.createElement('option');
-		opt.value = "";
-		opt.innerHTML = "Choose an option";
-		select1.appendChild(opt);
-
-		var opt = document.createElement('option');
-		opt.value = "net_1";
-		opt.innerHTML = "Personalized network";
-		select1.appendChild(opt);
-
-		select2 = document.querySelector('#net-2');
-
-		while (select2.firstChild) {
-			select2.removeChild(select2.firstChild);
-		}
-		var opt = document.createElement('option');
-		opt.value = "";
-		opt.innerHTML = "Choose an option";
-		select2.appendChild(opt);
-
-		var opt = document.createElement('option');
-		opt.value = "net_2";
-		opt.innerHTML = "Personalized network";
-		select2.appendChild(opt);
-
+		var processed_networks = {"Personalized Network": null}
 		for (var data in networks){
-			var opt = document.createElement('option');
-			opt.value = networks[data];
-			opt.innerHTML = networks[data];
-			select1.appendChild(opt);
+			processed_networks[networks[data]] = null;
 		};
-		for (var data in networks){
-			var opt = document.createElement('option');
-			opt.value = networks[data];
-			opt.innerHTML = networks[data];
-			select2.appendChild(opt);
-		};
+		$(document).ready(function() {
+			//$('.modal').modal();
+			  $('select').material_select();
+			  $('input.autocomplete').autocomplete('updateData', {data:{}});
+			  console.log('1', processed_networks);
+			});
+			$(document).ready(function() {
+			//$('.modal').modal();
+			  $('select').material_select();
+			  $('input.autocomplete').autocomplete({
+			data: processed_networks
+		  });
+		  console.log(processed_networks);
+		});
+		$(document).ready(function() {
+			$('select').material_select();
+			$('input.autocomplete-2').autocomplete({
+				data: processed_networks})
+		});
 		$(document).ready(function() {
 			$('select').material_select();
 		});
-
 	}).catch(err => console.log('[ ERROR ]', err));
 }
 
@@ -154,8 +152,8 @@ function processData(net, csv) {
 
 function submitForm() {
 	var db = document.querySelector('#db').value;
-	var net1 = document.querySelector('#net-1').value;
-	var net2 = document.querySelector('#net-2').value;
+	var net1 = document.querySelector('#autocomplete').value;
+	var net2 = document.querySelector('#autocomplete-2').value;
 	var aligner = document.querySelector('#aligner').value;
 	var mail = document.querySelector('#mail').value;
 	const payload = {
@@ -165,10 +163,10 @@ function submitForm() {
 		aligner,
 		mail
 	}
-	if (net1 === 'net_1') {
+	if (net1 === 'Personalized Network') {
 		payload.proteins_1 = proteins_1;
 	}
-	if (net2 === 'net_2') {
+	if (net2 === 'Personalized Network') {
 		getCSVFile('#file-net-2');
 		payload.proteins_2 = proteins_2;
 	}
