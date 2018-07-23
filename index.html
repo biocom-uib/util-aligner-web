@@ -53,11 +53,11 @@
 		<input type="text" id="autocomplete" class="autocomplete">
 		<label for="autocomplete">Input network</label>
     </div>
-    <div id="div-net-2" class="input-field col s6">
+<div id="div-net-2" class="input-field col s6">
 		<input type="text" id="autocomplete-2" class="autocomplete">
-		<label for="autocomplete-2">Input network</label>
-      </div>
-  </div>
+		<label for="autocomplete-2">Output network</label>
+      </div>    
+    </div>
   <div id='file-selector'>
       <div id='file-selector-1' class="file-field input-field col s6 hide">
           <div class="btn grey lighten-4 black-text">
@@ -81,7 +81,124 @@
           </div>
 
     </div>
-  
+    <div class="row center"></div>
+    <div id="div-score-net-1" class="input-field col s6">
+      <select id="score-net-1">
+        <option value="" disabled selected> Choose your score to set the threshold for Input network</option>
+        <option value="equiv_nscore">Neighborhood Score</option>
+        <option value="equiv_nscore_transferred">Neighborhood Score from other species</option>
+        <option value="equiv_fscore">Fusion score</option>
+        <option value="equiv_pscore">Cooccurence score</option>
+        <option value="equiv_hscore">Homology score</option>
+        <option value="array_score">Coexpression score</option>
+        <option value="array_score_transferred">Coexpression score transferred from other specie</option>
+        <option value="experimental_score">Experimental score</option>
+        <option value="experimental_score_transferred">Experimental score transferred by homology from other species</option>
+        <option value="database_score">Database score</option>
+        <option value="database_score_transferred">Database score transferred by homology from other species</option>
+        <option value="textmining_score">Textminig score</option>
+        <option value="textmining_score_transferred">Textminig score transferred by homology from other species</option>
+      </select>
+      <label>Threshold Input Network</label>      
+      <div id="net_1_equiv_nscore" class = "range-field col s6 hide">
+                  <input type = "range" id = "range_net_1_equiv_nscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_equiv_nscore_transferred" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_equiv_nscore_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_equiv_fscore" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_equiv_fscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_equiv_pscore" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_equiv_pscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_equiv_hscore" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_equiv_hscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      </div>
+      <div id="net_1_array_score" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_array_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_array_score_transferred" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_array_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_experimental_score" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_experimental_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_experimental_score_transferred" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_experimental_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_database_score" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_database_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_database_score_transferred" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_database_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_textmining_score" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_textmining_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_1_textmining_score_transferred" class = "range-field col s6 hide">
+        <input type = "range" id = "range_net_1_textmining_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+    </div>
+      <div id="div-score-net-2" class="input-field col s6">
+        <select id="score-net-2">
+          <option value="" disabled selected> Choose your score to set the threshold for Output network</option>
+          <option value="equiv_nscore">Neighborhood Score</option>
+          <option value="equiv_nscore_transferred">Neighborhood Score from other species</option>
+          <option value="equiv_fscore">Fusion score</option>
+          <option value="equiv_pscore">Cooccurence score</option>
+          <option value="equiv_hscore">Homology score</option>
+          <option value="array_score">Coexpression score</option>
+          <option value="array_score_transferred">Coexpression score transferred from other specie</option>
+          <option value="experimental_score">Experimental score</option>
+          <option value="experimental_score_transferred">Experimental score transferred by homology from other species</option>
+          <option value="database_score">Database score</option>
+          <option value="database_score_transferred">Database score transferred by homology from other species</option>
+          <option value="textmining_score">Textminig score</option>
+          <option value="textmining_score_transferred">Textminig score transferred by homology from other species</option>
+        </select>
+        <label>Threshold Output Network</label>      
+        <div id="net_2_equiv_nscore" class = "range-field col s6 hide">
+          <input type = "range" id = "range_net_2_equiv_nscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_equiv_nscore_transferred" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_equiv_nscore_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_equiv_fscore" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_equiv_fscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_equiv_pscore" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_equiv_pscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_equiv_hscore" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_equiv_hscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      </div>
+      <div id="net_2_array_score" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_array_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_array_score_transferred" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_array_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_experimental_score" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_experimental_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_experimental_score_transferred" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_experimental_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_database_score" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_database_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_database_score_transferred" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_database_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_textmining_score" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_textmining_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
+      <div id="net_2_textmining_score_transferred" class = "range-field col s6 hide">
+      <input type = "range" id = "range_net_2_textmining_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
+      </div>
   <div class="input-field col s12">
       <label for="mail">Email</label>
       <input id="mail" type="email" value="" />

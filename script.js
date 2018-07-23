@@ -1,4 +1,4 @@
-var BASE_URL =  'http://127.0.0.1:10080/util-aligner';
+var BASE_URL =  'https://biocom.uib.es/util-aligner';
 var DATABASE = '/database';
 var NETWORKS = '/networks';
 var ALIGNERS = '/aligner';
@@ -7,6 +7,8 @@ var proteins_1 = [];
 var proteins_2 = [];
 var network_1 = null;
 var network_2 = null;
+var scores = ['equiv_nscore','equiv_nscore_transferred','equiv_fscore','equiv_pscore','equiv_hscore','array_score','array_score_transferred','experimental_score','experimental_score_transferred','database_score','database_score_transferred','textmining_score','textmining_score_transferred']
+var scores_net = {}
 
 window.onload = () => {
 	getInitialData();
@@ -40,17 +42,39 @@ window.onload = () => {
 		else document.querySelector('#file-selector-1').className = "file-field input-field col s6 hide";
 	})
 
+	$('#div-score-net-1').on('change', function(){
+		selector = document.querySelector('#score-net-1');
+		selected = selector.value;
+
+		for (score in scores) document.querySelector('#net_1_'+scores[score]).className = "range-field col s6 hide";
+     	document.querySelector('#net_1_'+selected).className = "range-field col s6";
+	})
+	$('#div-score-net-2').on('change', function(){
+		selector = document.querySelector('#score-net-2');
+		selected = selector.value;
+
+		for (score in scores) document.querySelector('#net_2_'+scores[score]).className = "range-field col s6 hide";
+     	document.querySelector('#net_2_'+selected).className = "range-field col s6";
+	})
+	$('#range_*').on('change', function(){
+		console.log('ok');
+	})
+
 	$('#file-net-1').on('change', function(){
 		getCSVFile('#file-net-1')
 	})
 	$('#file-net-2').on('change', function(){
 		getCSVFile('#file-net-2')
 	})
-	
 	button.onclick = submitForm;
 }
 
-
+function update_score(value, elem){
+	console.log(elem.id);
+	scores_net[elem.id] = value
+	console.log(scores_net)
+	
+}
   
 
 function getInitialData() {
@@ -161,7 +185,8 @@ function submitForm() {
 		net1,
 		net2,
 		aligner,
-		mail
+		mail,
+		scores_net
 	}
 	if (net1 === 'Personalized Network') {
 		payload.proteins_1 = proteins_1;
