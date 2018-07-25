@@ -9,17 +9,33 @@ var network_1 = null;
 var network_2 = null;
 var scores = ['equiv_nscore','equiv_nscore_transferred','equiv_fscore','equiv_pscore','equiv_hscore','array_score','array_score_transferred','experimental_score','experimental_score_transferred','database_score','database_score_transferred','textmining_score','textmining_score_transferred']
 var scores_net = {}
+var first_network = true
 
 window.onload = () => {
 	getInitialData();
 	var button = document.querySelector('#send');
+	var reset = document.querySelector('#reset-scores');
+	$(document).ready(function() {
+		$('.modal-trigger').leanModal()
+	});
 	$('#div-db').on('change', function(){
 		db = document.querySelector('#db');
+		if (! first_network) location.reload()
 		if (db.value != '') {
 			getNetworks()
 		}
-	})
+		if (db.value === 'StringDB') {
+			document.querySelector("#div-score-net-1").className = "input-field col s6"
+			document.querySelector("#div-score-net-2").className = "input-field col s6"
+			document.querySelector("#reset-scores").className = "btn-large  waves-effect waves-light orange"
+		}
+		else {
+			document.querySelector("#div-score-net-1").className = "input-field col s6 hide"
+			document.querySelector("#div-score-net-2").className = "input-field col s6 hide"
+			document.querySelector("#reset-scores").className = "btn-large  waves-effect waves-light orange hide"
 
+		}
+	})
 	$('#div-net-1').on('change', function(){
 		db = document.querySelector('#autocomplete');
 		if (db.value === "Personalized Network") document.querySelector('#file-selector-1').className = "file-field input-field col s6";
@@ -39,7 +55,7 @@ window.onload = () => {
 	$('#div-net-2').on('click', function(){
 		db = document.querySelector('#autocomplete-2');
 		if (db.value === "Personalized Network") document.querySelector('#file-selector-2').className = "file-field input-field col s6";
-		else document.querySelector('#file-selector-1').className = "file-field input-field col s6 hide";
+		else document.querySelector('#file-selector-2').className = "file-field input-field col s6 hide";
 	})
 
 	$('#div-score-net-1').on('change', function(){
@@ -56,9 +72,6 @@ window.onload = () => {
 		for (score in scores) document.querySelector('#net_2_'+scores[score]).className = "range-field col s6 hide";
      	document.querySelector('#net_2_'+selected).className = "range-field col s6";
 	})
-	$('#range_*').on('change', function(){
-		console.log('ok');
-	})
 
 	$('#file-net-1').on('change', function(){
 		getCSVFile('#file-net-1')
@@ -67,15 +80,19 @@ window.onload = () => {
 		getCSVFile('#file-net-2')
 	})
 	button.onclick = submitForm;
+	reset.onclick = reset_scores;
 }
 
 function update_score(value, elem){
-	console.log(elem.id);
 	scores_net[elem.id] = value
-	console.log(scores_net)
 	
 }
-  
+function reset_scores(){
+	scores_net = {}
+	for (score in scores) document.querySelector('#net_1_'+scores[score]).className = "range-field col s6 hide";
+	for (score in scores) document.querySelector('#net_2_'+scores[score]).className = "range-field col s6 hide";
+
+}  
 
 function getInitialData() {
 	fetch(`${BASE_URL}${DATABASE}`)
@@ -128,7 +145,6 @@ function getNetworks() {
 			//$('.modal').modal();
 			  $('select').material_select();
 			  $('input.autocomplete').autocomplete('updateData', {data:{}});
-			  console.log('1', processed_networks);
 			});
 			$(document).ready(function() {
 			//$('.modal').modal();
@@ -136,7 +152,6 @@ function getNetworks() {
 			  $('input.autocomplete').autocomplete({
 			data: processed_networks
 		  });
-		  console.log(processed_networks);
 		});
 		$(document).ready(function() {
 			$('select').material_select();
@@ -146,6 +161,7 @@ function getNetworks() {
 		$(document).ready(function() {
 			$('select').material_select();
 		});
+		first_network = false
 	}).catch(err => console.log('[ ERROR ]', err));
 }
 
