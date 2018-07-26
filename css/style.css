@@ -16,7 +16,7 @@
   margin-top: 40px;
 }
 .input-field .email {
-  font-size:
+  font-size: 2rem;
 }
 textarea.materialize-textarea {
   font-size: 26px;
@@ -31,12 +31,12 @@ input[type=email]:not(.browser-default) {
 }
 
 .input-field > label {
-  font-size: 2rem;
+  font-size: 1rem;
   padding-top: 2rem;
 }
 
 .input-field > label.active {
-  font-size: 2rem;
+  font-size: 1rem;
   margin-top: 7rem;
 }
 
@@ -54,4 +54,10 @@ input[type=email]:not(.browser-default) {
 
 .file-field .btn, .file-field .btn-large, .file-field .btn-small {
   padding-top: 4px;
+}
+.select-wrapper+label {
+  top: 10px;
+}
+.input-field label:not(.label-icon).active {
+  font-size: 1rem;
 }
