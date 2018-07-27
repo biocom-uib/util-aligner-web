@@ -186,8 +186,8 @@ function loadHandler_2(event) {
   }
 
 function processData(net, csv) {
-	const lines = csv.split(/\r\n|\n/)
-	net === 'net_1' ? proteins_1 = lines : proteins_2 = lines;
+	//const lines = csv.split(/\r\n|\n/)
+	net === 'net_1' ? proteins_1 = csv : proteins_2 = csv;
   }
 
 function submitForm() {
