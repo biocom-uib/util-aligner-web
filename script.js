@@ -38,23 +38,35 @@ window.onload = () => {
 	})
 	$('#div-net-1').on('change', function(){
 		db = document.querySelector('#autocomplete');
-		if (db.value === "Personalized Network") document.querySelector('#file-selector-1').className = "file-field input-field col s6";
+		if (db.value === "Personalized Network"){
+			document.querySelector('#file-selector-1').className = "file-field input-field col s6";
+			document.querySelector("#div-score-net-1").className = "input-field col s6 hide"			
+		}
 		else document.querySelector('#file-selector-1').className = "file-field input-field col s6 hide";
 	})
 	$('#div-net-1').on('click', function(){
 		db = document.querySelector('#autocomplete');
-		if (db.value === "Personalized Network") document.querySelector('#file-selector-1').className = "file-field input-field col s6";
+		if (db.value === "Personalized Network"){
+			document.querySelector('#file-selector-1').className = "file-field input-field col s6";
+			document.querySelector("#div-score-net-1").className = "input-field col s6 hide"			
+		}
 		else document.querySelector('#file-selector-1').className = "file-field input-field col s6 hide";
 	})
 
 	$('#div-net-2').on('change', function(){
 		db = document.querySelector('#autocomplete-2');
-		if (db.value === "Personalized Network") document.querySelector('#file-selector-2').className = "file-field input-field col s6";
+		if (db.value === "Personalized Network"){
+			document.querySelector('#file-selector-2').className = "file-field input-field col s6";
+			document.querySelector("#div-score-net-2").className = "input-field col s6 hide"			
+		}
 		else document.querySelector('#file-selector-2').className = "file-field input-field col s6 hide";
 	})
 	$('#div-net-2').on('click', function(){
 		db = document.querySelector('#autocomplete-2');
-		if (db.value === "Personalized Network") document.querySelector('#file-selector-2').className = "file-field input-field col s6";
+		if (db.value === "Personalized Network") {
+			document.querySelector('#file-selector-2').className = "file-field input-field col s6";
+			document.querySelector("#div-score-net-2").className = "input-field col s6 hide"			
+		}
 		else document.querySelector('#file-selector-2').className = "file-field input-field col s6 hide";
 	})
 
