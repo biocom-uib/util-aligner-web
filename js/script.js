@@ -256,12 +256,12 @@ function submitAlignment() {
     if ($('#' + prefix + '-network-predefined.active').length > 0) {
       if (reqBody.db === 'stringdb') {
         reqBody[net_key].species_id = $('#' + prefix + '-network').val();
-        reqBody[net_key].stringdb_score_thresholds = {};
+        reqBody[net_key].score_thresholds = {};
 
         for (var score_type in STRINGDB_SCORE_TYPES) {
           if ($('#' + prefix + '-stringdb-edge-score-' + score_type + '-check:checked').length > 0) {
             var val = $('#' + prefix + '-stringdb-edge-score-' + score_type + '-threshold').val();
-            reqBody[net_key].stringdb_score_thresholds[score_type] = parseInt(val);
+            reqBody[net_key].score_thresholds[score_type] = parseInt(val);
           }
         }
       }
