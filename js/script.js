@@ -243,15 +243,19 @@ function submitAlignment() {
     aligner: $('#aligner').val(),
     mail: $('#email').val(),
 
-    net1: { net_id: null, edges: null },
-    net2: { net_id: null, edges: null },
+    net1: { edges: null },
+    net2: { edges: null },
   };
+
+  if (reqBody.db == 'stringdb') {
+    net1.species_id = null;
+    net2.species_id = null;
+  }
 
   function addNetworks(net_key, prefix) {
     if ($('#' + prefix + '-network-predefined.active').length > 0) {
-      reqBody[net_key].net_id = $('#' + prefix + '-network').val();
-
       if (reqBody.db === 'stringdb') {
+        reqBody[net_key].species_id = $('#' + prefix + '-network').val();
         reqBody[net_key].stringdb_score_thresholds = {};
 
         for (var score_type in STRINGDB_SCORE_TYPES) {
