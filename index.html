@@ -1,237 +1,373 @@
 <!DOCTYPE html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-	<title>PINAWeb</title>
-  
-  
-  
-  
-	<!-- CSS  -->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel = "stylesheet"
-         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-	  <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"> </script> 
-		<!-- <script src = "https://codepen.io/arg3ni5/pen/VPQZwe"> </script>  -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>PINAWeb</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/css/material.min.css" integrity="sha256-o58Md5YYg3BuPoJ+JmogjhXcnghqxbS53BdV6sdowFU=" crossorigin="anonymous">-->
+
+    <!-- FontAwesome (icons) -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous">
+
+    <!-- Boostrap select plugin -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="css/style.css" />
 
   </head>
-<body>
-	<div class="section no-pad-bot" id="index-banner">
-		<div class="container">
-		  <br><br>
-		  <h1 class="header center orange-text">PINAWeb</h1>
-		  <div class="row center">
-				<h5 class="header col s12 light">A tool to align Protein Protein Interaction Networks</h5>
-		  </div>
-		  <br><br>
-		</div>
-  </div>
-  <form id="form">
-   <div class="row center">
-    <div id='div-db' class="input-field col s6">
-      <label for="db" class="tooltipped" data-tooltip = "I am in left!">Database</label>
-      <select id="db">
-        <option value="" disabled selected>Choose an option</option>
-      </select>
-    </div>
-    <div class="input-field col s6">
-        <label for="aligner">Aligner</label>
-        <select id="aligner">
-          <option value="" disabled selected>Choose an option</option>
-        </select>
-      </div>
-  
-  </div>
+  <body>
 
-  <div class="row center">
-  
-    <div id="div-net-1" class="input-field col s6">
-		<input type="text" id="autocomplete" class="autocomplete">
-		<label for="autocomplete">Input network</label>
+    <div class="container my-5">
+      <h1 class="text-center">PINAWeb</h1>
+      <p class="text-center">A tool to align Protein-Protein Interaction Networks</p>
     </div>
-<div id="div-net-2" class="input-field col s6">
-		<input type="text" id="autocomplete-2" class="autocomplete">
-		<label for="autocomplete-2">Output network</label>
-      </div>    
-    </div>
-  <div id='file-selector'>
-      <div id='file-selector-1' class="file-field input-field col s6 hide">
-          <div class="btn grey lighten-4 black-text">
-            <span>Select File</span>
-            <input id="file-net-1" type="file" multiple>
+
+    <form method="POST" id="alignment-form" action="javascript:void(0);">
+      <div class="container">
+        <div class="row mb-5 justify-content-around">
+          <div class="form-group col-3">
+            <label for="database">Database</label>
+            <select class="form-control" name="database" id="database"></select>
           </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-            <span> Input Network</span>
+
+          <div class="form-group col-3">
+            <label for="aligner">Aligner</label>
+            <div class="input-group">
+              <select class="form-control" name="aligner" id="aligner"></select>
+              <!--
+              <div class="input-group-append">
+                <button type="button" class="btn btn-secondary" id="aligner-options-btn">
+                  <i class="fas fa-cog"></i>
+                </button>
+              </div>
+              -->
+            </div>
+          </div>
+
+          <div class="form-group col-4">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" name="email" id="email" autocomplete="email" />
+          </div>
+
+          <div class="col-sm-2">
+            <button type="submit" class="btn btn-primary btn-lg" id="submit-alignment">Submit</button>
           </div>
         </div>
-        <div id='file-selector-2' class="file-field input-field col s6 hide">
-            <div class="btn grey lighten-4 black-text">
-              <span>Select File/s</span>
-              <input id="file-net-2" type="file" multiple>
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
-              <span> Output Network</span>
+
+        <div class="row">
+          <div class="col-xl-6 input-network-form">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-md-4 align-self-center">
+                    <span class="card-title">Input network</span>
+                  </div>
+                  <div class="col-md-8">
+                    <ul class="nav nav-pills card-header-pills">
+                      <li class="nav-item">
+                        <a class="nav-link network-pill active" data-toggle="pill" href="#input-network-predefined">Predefined</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link network-pill" data-toggle="pill" href="#input-network-custom">Custom</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="input-network-predefined">
+                    <div class="form-group">
+                      <label for="input-network">Choose a network</label>
+                      <select class="form-control live-search" name="input-network" id="input-network"></select>
+                    </div>
+
+                    <div class="card stringdb-only">
+                      <div class="card-header">
+                        <a class="d-block align-items-center" data-toggle="collapse" href="#input-stringdb-edge-selection" data-target="#input-stringdb-edge-selection">
+                          <i class="fa fa-chevron-down float-right align-self-center"></i>
+                          Edge selection (<span class="selection-count">0</span>)
+                          <input type="hidden" class="selection-count" name="input-stringdb-selection-count" value="0"/>
+                        </a>
+                      </div>
+                      <div class="card-body collapse stringdb-edge-selection" id="input-stringdb-edge-selection">
+                        <div class="row align-items-center">
+                          <div class="col">
+                            <p>
+                            Choose which edge types should be considered.
+                            Additionally, you can specify thresholds for each
+                            edge score so that only edges with any of the
+                            chosen scores equal or above the given thresholds
+                            will be considered.
+                            </p>
+                            <p>
+                            <em>(All scores range from 0 to 1000.)</em>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="input-network-custom">
+                    <div class="row align-items-center">
+                      <div class="form-group col" id="input-network-file-group">
+                        <label for="input-network-file">Upload a network</label>
+                        <input type="file" class="form-control-file" name="input-network-file" id="input-network-file" accept="text/tab-separated-values"/>
+                      </div>
+                      <div class="col-auto">
+                        <button type="button" class="btn btn-info fas fa-info-circle" data-toggle="modal" data-target="#custom-network-help-modal"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-    </div>
-    <div class="row center"></div>
-    <div id="div-score-net-1" class="input-field col s6 hide">
-      <select id="score-net-1">
-        <option value="" disabled selected> Choose your score to set the threshold for Input network</option>
-        <option value="equiv_nscore">Neighborhood Score</option>
-        <option value="equiv_nscore_transferred">Neighborhood Score from other species</option>
-        <option value="equiv_fscore">Fusion score</option>
-        <option value="equiv_pscore">Cooccurence score</option>
-        <option value="equiv_hscore">Homology score</option>
-        <option value="array_score">Coexpression score</option>
-        <option value="array_score_transferred">Coexpression score transferred from other specie</option>
-        <option value="experimental_score">Experimental score</option>
-        <option value="experimental_score_transferred">Experimental score transferred by homology from other species</option>
-        <option value="database_score">Database score</option>
-        <option value="database_score_transferred">Database score transferred by homology from other species</option>
-        <option value="textmining_score">Textminig score</option>
-        <option value="textmining_score_transferred">Textminig score transferred by homology from other species</option>
-      </select>
-      <label>Threshold Input Network</label>      
-      <div id="net_1_equiv_nscore" class = "range-field col s6 hide">
-                  <input type = "range" id = "range_net_1_equiv_nscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_equiv_nscore_transferred" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_equiv_nscore_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_equiv_fscore" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_equiv_fscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_equiv_pscore" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_equiv_pscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_equiv_hscore" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_equiv_hscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      </div>
-      <div id="net_1_array_score" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_array_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_array_score_transferred" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_array_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_experimental_score" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_experimental_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_experimental_score_transferred" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_experimental_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_database_score" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_database_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_database_score_transferred" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_database_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_textmining_score" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_textmining_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_1_textmining_score_transferred" class = "range-field col s6 hide">
-        <input type = "range" id = "range_net_1_textmining_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-    </div>
-      <div id="div-score-net-2" class="input-field col s6 hide">
-        <select id="score-net-2">
-          <option value="" disabled selected> Choose your score to set the threshold for Output network</option>
-          <option value="equiv_nscore">Neighborhood Score</option>
-          <option value="equiv_nscore_transferred">Neighborhood Score from other species</option>
-          <option value="equiv_fscore">Fusion score</option>
-          <option value="equiv_pscore">Cooccurence score</option>
-          <option value="equiv_hscore">Homology score</option>
-          <option value="array_score">Coexpression score</option>
-          <option value="array_score_transferred">Coexpression score transferred from other specie</option>
-          <option value="experimental_score">Experimental score</option>
-          <option value="experimental_score_transferred">Experimental score transferred by homology from other species</option>
-          <option value="database_score">Database score</option>
-          <option value="database_score_transferred">Database score transferred by homology from other species</option>
-          <option value="textmining_score">Textminig score</option>
-          <option value="textmining_score_transferred">Textminig score transferred by homology from other species</option>
-        </select>
-        <label>Threshold Output Network</label>      
-        <div id="net_2_equiv_nscore" class = "range-field col s6 hide">
-          <input type = "range" id = "range_net_2_equiv_nscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_equiv_nscore_transferred" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_equiv_nscore_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_equiv_fscore" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_equiv_fscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_equiv_pscore" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_equiv_pscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_equiv_hscore" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_equiv_hscore" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      </div>
-      <div id="net_2_array_score" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_array_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_array_score_transferred" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_array_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_experimental_score" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_experimental_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_experimental_score_transferred" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_experimental_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_database_score" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_database_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_database_score_transferred" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_database_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_textmining_score" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_textmining_score" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <div id="net_2_textmining_score_transferred" class = "range-field col s6 hide">
-      <input type = "range" id = "range_net_2_textmining_score_transferred" min = "0" max = "1000" default= "80" onchange="update_score(this.value, this)" />
-      </div>
-      <a id="reset-scores" class="btn-large  waves-effect waves-light orange hide">Reset all scores</a>
-    </form>
-  <div class="input-field col s12">
-      <label for="mail">Email</label>
-      <input id="mail" type="email" value="" />
-    </div>
-    <div class="row center">
-        <a id="send" class="btn-large waves-effect waves-light orange">Send</a>
-        <a id="help" class="btn-large waves-effect waves-light modal-trigger orange" href="#modal1">Help</a>
+          <div class="col-xl-6 output-network-form">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-md-4 align-self-center">
+                    <span class="card-title">Output network</span>
+                  </div>
+                  <div class="col-md-8">
+                    <ul class="nav nav-pills card-header-pills">
+                      <li class="nav-item">
+                        <a class="nav-link network-pill active" data-toggle="pill" href="#output-network-predefined">Predefined</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link network-pill" data-toggle="pill" href="#output-network-custom">Custom</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="output-network-predefined">
+                    <div class="form-group">
+                      <label for="output-network">Choose a network</label>
+                      <select class="form-control live-search" name="output-network" id="output-network"></select>
+                    </div>
+
+                    <div class="card stringdb-only stringdb-edge-selection">
+                      <div class="card-header">
+                        <a class="d-block align-items-center" data-toggle="collapse" href="#output-stringdb-edge-selection" data-target="#output-stringdb-edge-selection">
+                          <i class="fa fa-chevron-down float-right align-self-center"></i>
+                          Edge selection (<span class="selection-count">0</span>)
+                          <input type="hidden" class="selection-count" name="output-stringdb-selection-count" value="0"/>
+                        </a>
+                      </div>
+                      <div class="card-body collapse stringdb-edge-selection" id="output-stringdb-edge-selection">
+                        <div class="row align-items-center">
+                          <div class="col">
+                            <p>
+                            Choose which edge types should be considered.
+                            Additionally, you can specify thresholds for each
+                            edge score so that only edges with any of the
+                            chosen scores equal or above the given thresholds
+                            will be considered.
+                            </p>
+                            <p>
+                            <em>(All scores range from 0 to 1000.)</em>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="output-network-custom">
+                    <div class="row align-items-center">
+                      <div class="form-group col" id="output-network-file-group">
+                        <label for="output-network-file">Upload a network</label>
+                        <input type="file" class="form-control-file" id="output-network-file" accept="text/tab-separated-values"/>
+                      </div>
+                      <div class="col-auto">
+                        <button type="button" class="btn btn-info fas fa-info-circle" data-toggle="modal" data-target="#custom-network-help-modal"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-  <div class="modal-content">
-      <h4>Instructions</h4>
-    <ol>
-    <li>Select database</li>
-    <li>Select the aligner</li>
-    <li>Select the input and output network. Type the name of the specie or select <a href="personalized.tab"><i>Personalized Network</i></a> if you want to use your own data. To introduce your own network  upload a text file with two columns of proteins such that each row will be an edge.  Proteins' ID must be the same as the selected database.</li>
-    <li>If you select a network from the String database, then you must select an interaction type and its threshold. For example, you can choose a neighborhood score with a threshold value of 600. Thus, those edges whose score are greater than 600 will be taken.  To reset the threshold chooses the  RESET ALL SCORES button.</li>
-    <li>Write your email address to get the report file.</li>
-    <li>Click send button</li>
-    <li>You will receive a report with the results when it is done.</li>
-  </ol>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-  </div>
-</div>
-  <script src="script.js"></script>
-</body>
-<footer>
-  <br></br>
-  <div align='center'>
-  <p>Computational Biology and Bioinformatics Group (BIOCOM)</p>
-  <p>University of the Balearic Islands</p>  
-</div>
-</footer>
+
+      <div class="modal fade alignet-only aligner-options-modal" id="alignet-options-modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Alignet options</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Alignet options here
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Custom network help modal -->
+    <div class="modal fade" id="custom-network-help-modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Custom networks</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+            To introduce your own network upload a text file with two columns
+            of proteins (separated by a tab character) such that each row
+            will be an edge. Protein IDs must match those used for the
+            selected database.
+            </p>
+            <ul>
+              <li><a href="sample-network.tab">Generic example</a></li>
+              <li><a href="sample-network-stringdb.tab">StringDB example</a>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alignment submitted modal -->
+    <div class="modal fade" id="alignment-submitted-modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Alignment submitted</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+            The alignment was submitted successfully as job
+            </p>
+            <pre><code id="submitted-job-id"></code></pre>
+            <p>
+            Note that it may take a long time depending on the size of the
+            networks, and some aligners may even crash for sufficiently large
+            ones.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alignment precomputed modal -->
+    <div class="modal fade" id="alignment-precomputed-modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Alignment requested</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+            The alignment was found precomputed in the database and you should
+            receive an e-mail shortly with the results.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submission error modal -->
+    <div class="modal fade" id="alignment-submission-error-modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+            An error ocurred when the job was submitted:
+            </p>
+            <p id="submission-error-text">
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <div class="container-fluid text-center small py-3">
+        <p>
+        Computational Biology and Bioinformatics Group (BIOCOM)
+        <br/>
+        Universty of the Balearic Islands
+        </p>
+      </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- jQuery validate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js" integrity="sha256-F6h55Qw6sweK+t7SiOJX+2bpSAa3b/fnlrVCJvmEj1A=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js" integrity="sha256-0Yg/eibVdKyxkuVo1Qwh0DspoUCHvSbm/oOoYVz32BQ=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/js/material.min.js" integrity="sha256-5Sww9kh5vyB1q01jitIDnnq7QYU10lTv9/eT8PQablc=" crossorigin="anonymous"></script>-->
+
+    <!-- Bootstrap select plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+    <script>
+      $(window).on('load', function() {
+        // disable autofill or assumptions based on change events break when
+        $('input[type!=email]').prop('autocomplete', 'off');
+      });
+    </script>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

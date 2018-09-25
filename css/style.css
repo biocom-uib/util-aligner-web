@@ -1,63 +1,40 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-
-.icon-block {
-  padding: 0 15px;
-}
-.icon-block .material-icons {
-	font-size: inherit;
-}
-.input-field {
-  margin-top: 40px;
-}
-.input-field .email {
-  font-size: 2rem;
-}
-textarea.materialize-textarea {
-  font-size: 26px;
-  margin: 0 0 20px 0;
-  padding-bottom: 3px;
-  padding-left: 13px;
-  padding-top: 40px;
-}
-input[type=email]:not(.browser-default) {
-  font-size: 26px;
-  margin-left: 10px;
+html, body {
+  min-height: 100%;
 }
 
-.input-field > label {
-  font-size: 1rem;
-  padding-top: 2rem;
+#footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
 }
 
-.input-field > label.active {
-  font-size: 1rem;
-  margin-top: 7rem;
+.stringdb-only {
+  display: none;
 }
 
-.select-wrapper input.select-dropdown {
-  font-size: 22px;
+.card-header .fa-chevron-down {
+  transition: .3s transform ease-in-out;
 }
 
-.select-wrapper .caret {
-  font-size: 22px;
+.card-header .collapsed .fa-chevron-down {
+  transform: rotate(180deg);
 }
 
-.file-field .file-path-wrapper {
-  font-size: 20px;
+#submit-alignment {
+  margin-top: 2.55ex;
 }
 
-.file-field .btn, .file-field .btn-large, .file-field .btn-small {
-  padding-top: 4px;
+.dropdown-menu > li > a:hover {
+  text-decoration: none;
+  color: #000000;
+  background-color: #dee2e6;
 }
-.select-wrapper+label {
-  top: 10px;
+
+/*
+.dropdown-menu > li > a:focus {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #007bff;
 }
-.input-field label:not(.label-icon).active {
-  font-size: 1rem;
-}
+*/
