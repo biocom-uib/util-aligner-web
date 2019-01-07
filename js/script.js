@@ -248,8 +248,8 @@ function submitAlignment() {
   };
 
   if (reqBody.db == 'stringdb') {
-    net1.species_id = null;
-    net2.species_id = null;
+    reqBody.net1.species_id = null;
+    reqBody.net2.species_id = null;
   }
 
   function addNetworks(net_key, prefix) {
