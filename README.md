@@ -21,7 +21,7 @@ at the corresponding interface selector.
 
 # Contributing
 
-##  Steps to add a new aligner in PINAWeb
+##  Steps to add a new aligner to PINAWeb
 In the server (https://github.com/biocom-uib/util-aligner-server) you need to:
 * Add the aligner template (executable and required files) to `aligners-templates/template-new_aligner`.
 * Add a new module to the `server/aligners/` directory with a class inheriting from `Aligner`.
@@ -29,7 +29,7 @@ In the server (https://github.com/biocom-uib/util-aligner-server) you need to:
 * Populate the DB (to be queried by the API) with `update_mysql.py`.
 
 
-##  Steps to add a new score in PINAWeb
+##  Steps to add a new score to PINAWeb
 In the server (https://github.com/biocom-uib/util-aligner-server) you need to do:
 * Implement the new score in `scores.py` or a new module. Then call it from `compute_scores` in `scores.py`.
 * If the new scoring function returns (even potentially) large results, split them into separate files in `split_score_data_as_tsvs` (again from `scores.py`).
