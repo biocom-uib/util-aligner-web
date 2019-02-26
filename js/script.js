@@ -359,6 +359,10 @@ $(document).ready(function() {
     }
   });
 
+  $('#button-howto').click(function() {
+    window.open('howto.pdf', '_blank')
+  });
+
   setupValidation(submitAlignment);
 
   fetchDatabases();

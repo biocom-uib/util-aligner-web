@@ -24,6 +24,11 @@ html, body {
   margin-top: 2.55ex;
 }
 
+#button-howto {
+  margin-top: 2.55ex;
+  margin-left: 1em;
+}
+
 .dropdown-menu > li > a:hover {
   text-decoration: none;
   color: #000000;
