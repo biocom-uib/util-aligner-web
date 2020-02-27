@@ -132,6 +132,19 @@ function generateStringDbFilters() {
               id:    prefix + '-stringdb-edge-score-' + score_type + '-threshold'
             })
           )
+        ).append(
+          $('<div>', {
+            class: 'col-auto',
+            id: score_type + '-help-button-div'
+          }).append(
+            $('<button>', {
+              id: score_type + '-help-button',
+              class: 'btn btn-info fas fa-info-circle',
+              type: 'button',
+              'data-toggle': 'modal',
+              'data-target': '#' + score_type + '-help-modal'
+            })
+          )
         )
       )
     }
