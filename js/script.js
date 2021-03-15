@@ -234,7 +234,7 @@ function readFile(file, cb) {
     cb(reader.result);
   };
 
-  reader.readAsDataURL(file);
+  reader.readAsText(file);
 }
 
 function submitAlignment() {
