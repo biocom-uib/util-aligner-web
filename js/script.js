@@ -368,14 +368,3 @@ $(document).ready(function() {
   fetchDatabases();
   fetchAligners();
 });
-
-function getCSVFile(selector) {
-  const file = document.querySelector(selector).files[0];
-  if (!file) return Materialize.toast('You need to select a file', 4000);
-  const reader = new FileReader();
-  reader.readAsText(file);
-  reader.onload = selector === '#file-net-1' ? this.loadHandler_1 : this.loadHandler_2;
-  reader.onerror = this.errorHandler;
-  return reader;
-}
-
