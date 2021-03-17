@@ -155,10 +155,6 @@ function setupValidation(submitHandler) {
     }
   };
 
-  var isStringDB = function(element) {
-    return $('#database').val() === 'stringdb';
-  };
-
   ['input', 'output'].forEach(function(prefix) {
     rules[prefix + '-network-file'] = {
       required: '#' + prefix + '-network-custom.active',
@@ -173,7 +169,9 @@ function setupValidation(submitHandler) {
       number: true,
       min: {
         param: 1,
-        depends: isStringDB
+        depends: function(element) {
+          $('#database').val() == 'stringdb' && $('#' + prefix + '-network-predefined').is('.active')
+        }
       }
     };
 
