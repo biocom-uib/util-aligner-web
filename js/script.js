@@ -1,4 +1,4 @@
-var BASE_URL =  'https://biocom.uib.es/util-aligner/v2';
+var BASE_URL =  'https://datacom.uib.es/util-aligner/v2';
 var DATABASE_URL = BASE_URL + '/database';
 var NETWORKS_URL = BASE_URL + '/networks';
 var ALIGNERS_URL = BASE_URL + '/aligner';
